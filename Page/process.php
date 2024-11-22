@@ -1,42 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submitted Data</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .submitted-data {
-            max-width: 400px;
-            margin: auto;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <div class="submitted-data">
-        <h2>Submitted Data</h2>
-        <?php
-        // Check if form data is submitted via POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = htmlspecialchars($_POST['name']);
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']); // Normally, never display raw passwords.
+<?php
+// class Process {
+//     private $name;
+//     private $email;
+//     private $password;
 
-            echo "<p><strong>Name:</strong> $name</p>";
-            echo "<p><strong>Email:</strong> $email</p>";
-            echo "<p><strong>Password:</strong> $password</p>"; // For display purposes only.
-        } 
-        else {
-            echo "<p>No data submitted.</p>";
+//     private static $file_path = "data.txt"; // Correct file extension
+
+//     // Constructor to initialize properties
+//     function __construct($name, $email, $password) {
+//         $this->name = $name;
+//         $this->email = $email;
+//         $this->password = $password;
+//     }
+
+//     // Convert object data to CSV format
+//     function csv() {
+//         return "$this->name,$this->email,$this->password" . PHP_EOL;
+//     }
+
+//     // Save data to the file
+//     function save() {
+//         // Append data to the file
+//         file_put_contents(self::$file_path, $this->csv(), FILE_APPEND);
+//     }
+
+//     // Display all saved data
+//     public static function display_process() {
+//         if (!file_exists(self::$file_path)) {
+//             echo "No data available.";
+//             return;
+//         }
+
+//         $processes = file(self::$file_path, FILE_IGNORE_NEW_LINES);
+//         echo "<b>Name | Email</b><br/>";
+//         foreach ($processes as $process) {
+//             list($name, $email) = explode(",", $process);
+//             echo "$name | $email<br/>";
+//         }
+//     }
+// }
+?>
+
+
+<?php
+class Process {
+    private $name;
+    private $email;
+    private $password;
+
+    private static $file_path = "data.txt"; // File to store data
+
+    // Constructor to initialize properties
+    function __construct($name, $email, $password) {
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    // Convert object data to CSV format
+    function csv() {
+        return "$this->name,$this->email,$this->password" . PHP_EOL;
+    }
+
+    // Save data to the file
+    function save() {
+        file_put_contents(self::$file_path, $this->csv(), FILE_APPEND);
+    }
+
+    // Display all saved data
+    public static function display_process() {
+        if (!file_exists(self::$file_path)) {
+            echo "<p class='text-center'>No data available.</p>";
+            return;
         }
-        ?>
-    </div>
-</body>
-</html>
+
+        $processes = file(self::$file_path, FILE_IGNORE_NEW_LINES);
+        echo "<table class='table-auto border-collapse border border-gray-300 mx-auto'>";
+        echo "<thead><tr><th class='border border-gray-300 px-4 py-2'>Name</th><th class='border border-gray-300 px-4 py-2'>Email</th></tr></thead>";
+        echo "<tbody>";
+        foreach ($processes as $process) {
+            list($name, $email) = explode(",", $process);
+            echo "<tr><td class='border border-gray-300 px-4 py-2'>$name</td><td class='border border-gray-300 px-4 py-2'>$email</td></tr>";
+        }
+        echo "</tbody></table>";
+    }
+}
+?>
+
