@@ -1,17 +1,4 @@
-<?php
-// require('Page/process.php');
 
-// if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btn_submit"])) {
-//     $name = htmlspecialchars($_POST["name"]);
-//     $email = htmlspecialchars($_POST["email"]);
-//     $password = htmlspecialchars($_POST["password"]);
-
-//     // Create a new Process object and save data
-//     $data = new Process($name, $email, $password);
-//     $data->save();
-//     echo "Data saved successfully!";
-// }
-?>
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -46,7 +33,7 @@
     </section>
 
     <section>
-        <h2 class="text-center text-xl mt-5 mb-5 font-bold">Submitted Data</h2>
+        <h2 class="ml-[57%] text-xl mt-5 mb-5 font-bold">Submitted Data</h2>
         <?php
                 require('Page/process.php');
                 if(  isset($_POST["btn_submit"])){

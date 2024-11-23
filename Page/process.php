@@ -26,9 +26,8 @@
         public static function display_process() {
             $processes = file(self::$file_path);
         
-            // Start the table
             echo "
-            <table style='margin-left: 38%; padding-bottom: 10; font-size: 1.25rem; border-collapse: collapse;'>
+            <table style='margin-left: 50%; padding-bottom: 10; font-size: 1.25rem; border-collapse: collapse;'>
                 <thead>
                     <tr>
                         <th style='border: 1px solid black; padding: 8px;'>Name</th>
@@ -37,9 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>";
-        
-            // Iterate over each process
-            foreach ($processes as $process) {
+                foreach ($processes as $process) {
                 list($name, $email, $password) = explode(",", trim($process));
                 echo "
                 <tr>
@@ -48,8 +45,6 @@
                     <td style='border: 1px solid black; padding: 8px;'>$password</td>
                 </tr>";
             }
-        
-            // Close the table
             echo "
                 </tbody>
             </table>";

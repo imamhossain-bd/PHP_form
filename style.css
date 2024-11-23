@@ -16,12 +16,13 @@
 
 #form_data{
     background-color: rgb(255, 255, 255);
-    margin: 0 auto;
+    margin-left: 40px;
     width: 100%;
     max-width: 500px;
     box-shadow: 6px 6px 15px rgb(170,170,170);
     padding: 25px;
     border-radius: 10px;
+    float: left;
 }
 #input_label label{
     font-size: 21px;
