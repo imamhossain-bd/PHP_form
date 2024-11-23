@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -32,24 +30,21 @@
         </div>
     </section>
 
-    <section>
-        <h2 class="ml-[57%] text-xl mt-5 mb-5 font-bold">Submitted Data</h2>
-        <?php
-                require('Page/process.php');
-                if(  isset($_POST["btn_submit"])){
-                    $name= ($_POST["inputName"]);
-                    $email = ($_POST["inputEmail"]);
-                    $password = ($_POST["inputPassword"]);
-            
-                        $process = new Process($name, $email, $password);
-                        $process->save();
-                        echo "<div class='ml-[44%]'>Data saved successfully!</div>";
-                }
-        ?>
-        <?php
-        Process::display_process();
-        ?>
-    </section>
+    <?php
+    require('Process.php');
+    if (isset($_POST["btn_submit"])) {
+        $name = $_POST["inputName"];
+        $email = $_POST["inputEmail"];
+        $password = $_POST["inputPassword"];
+
+        // Save data
+        $process = new Process($name, $email, $password);
+        $process->save();
+
+        // Redirect to display.php
+        header('Location: display.php');
+        exit;
+    }
+    ?>
 </body>
 </html>
-

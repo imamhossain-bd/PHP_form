@@ -4,7 +4,7 @@
         private $email;
         private $password;
 
-        private static $file_path="data.txt";
+        private static $file_path="data.text";
 
         function __construct($names, $emails, $passwords){
             $this->name = $names;
@@ -27,7 +27,7 @@
             $processes = file(self::$file_path);
         
             echo "
-            <table style='margin-left: 50%; padding-bottom: 10; font-size: 1.25rem; border-collapse: collapse;'>
+            <table style='margin-left: 37%; padding-bottom: 10; font-size: 1.25rem; border-collapse: collapse;'>
                 <thead>
                     <tr>
                         <th style='border: 1px solid black; padding: 8px;'>Name</th>
