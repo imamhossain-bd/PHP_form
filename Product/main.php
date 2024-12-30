@@ -39,48 +39,52 @@ if (isset($_POST['delBtn'])) {
     <title>E-commerce Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6 text-center">E-commerce Management</h1>
-
-        <!-- Flex Container -->
-        <div class="flex flex-wrap gap-6 justify-center">
-
+<body class="bg-gray-50 min-h-screen flex flex-col items-center">
+    <header class="bg-blue-600 w-full text-white py-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">E-commerce Management</h1>
+        </div>
+    </header>
+    <main class="container mx-auto p-6 flex flex-col gap-6">
+        <!-- Management Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Add Brand Section -->
-            <section class="bg-white p-6 shadow-md rounded-md w-full md:w-1/3">
-                <h2 class="text-xl font-bold mb-4">Add Brand</h2>
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-blue-600 mb-4">Add Brand</h2>
                 <form method="POST" class="space-y-4">
                     <div>
-                        <label for="name" class="block text-gray-700">Name</label>
-                        <input type="text" name="name" id="name" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="name" class="block text-gray-700 font-medium">Brand Name</label>
+                        <input type="text" name="name" id="name" class="w-full p-3 border rounded-lg focus:outline-blue-500">
                     </div>
                     <div>
-                        <label for="address" class="block text-gray-700">Address</label>
-                        <input type="text" name="address" id="address" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="address" class="block text-gray-700 font-medium">Address</label>
+                        <input type="text" name="address" id="address" class="w-full p-3 border rounded-lg focus:outline-blue-500">
                     </div>
                     <div>
-                        <label for="contact" class="block text-gray-700">Contact</label>
-                        <input type="text" name="contact" id="contact" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="contact" class="block text-gray-700 font-medium">Contact</label>
+                        <input type="text" name="contact" id="contact" class="w-full p-3 border rounded-lg focus:outline-blue-500">
                     </div>
-                    <button name="submitBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full">Submit</button>
+                    <button name="submitBtn" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                        Add Brand
+                    </button>
                 </form>
             </section>
 
             <!-- Add Product Section -->
-            <section class="bg-white p-6 shadow-md rounded-md w-full md:w-1/3">
-                <h2 class="text-xl font-bold mb-4">Add Product</h2>
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-green-600 mb-4">Add Product</h2>
                 <form method="POST" class="space-y-4">
                     <div>
-                        <label for="aName" class="block text-gray-700">Product Name</label>
-                        <input type="text" name="aName" id="aName" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="aName" class="block text-gray-700 font-medium">Product Name</label>
+                        <input type="text" name="aName" id="aName" class="w-full p-3 border rounded-lg focus:outline-green-500">
                     </div>
                     <div>
-                        <label for="aPrice" class="block text-gray-700">Price</label>
-                        <input type="text" name="aPrice" id="aPrice" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="aPrice" class="block text-gray-700 font-medium">Price</label>
+                        <input type="text" name="aPrice" id="aPrice" class="w-full p-3 border rounded-lg focus:outline-green-500">
                     </div>
                     <div>
-                        <label for="productList" class="block text-gray-700">Brand</label>
-                        <select name="productList" id="productList" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="productList" class="block text-gray-700 font-medium">Select Brand</label>
+                        <select name="productList" id="productList" class="w-full p-3 border rounded-lg focus:outline-green-500">
                             <?php
                             $brands = $conn->query('SELECT * FROM addbrand');
                             while ($brand = $brands->fetch_assoc()) {
@@ -89,17 +93,19 @@ if (isset($_POST['delBtn'])) {
                             ?>
                         </select>
                     </div>
-                    <button name="addBtn" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 w-full">Add Product</button>
+                    <button name="addBtn" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+                        Add Product
+                    </button>
                 </form>
             </section>
 
             <!-- Delete Brand Section -->
-            <section class="bg-white p-6 shadow-md rounded-md w-full md:w-1/3">
-                <h2 class="text-xl font-bold mb-4">Delete Brand</h2>
+            <section class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-red-600 mb-4">Delete Brand</h2>
                 <form method="POST" class="space-y-4">
                     <div>
-                        <label for="delBrand" class="block text-gray-700">Select Brand</label>
-                        <select name="delBrand" id="delBrand" class="w-full p-2 border border-gray-300 rounded-md">
+                        <label for="delBrand" class="block text-gray-700 font-medium">Select Brand</label>
+                        <select name="delBrand" id="delBrand" class="w-full p-3 border rounded-lg focus:outline-red-500">
                             <?php
                             $brands = $conn->query('SELECT * FROM addbrand');
                             while ($brand = $brands->fetch_assoc()) {
@@ -108,45 +114,47 @@ if (isset($_POST['delBtn'])) {
                             ?>
                         </select>
                     </div>
-                    <button name="delBtn" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full">Delete</button>
+                    <button name="delBtn" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">
+                        Delete Brand
+                    </button>
                 </form>
             </section>
         </div>
 
         <!-- Product List Section -->
-        <section class="bg-white p-6 shadow-md rounded-md mt-6">
-            <h2 class="text-xl font-bold mb-4">Product List</h2>
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Product List</h2>
             <?php
-                $display = $conn->query("SELECT * FROM details");
-                
-                if ($display && $display->num_rows > 0) {
-                    echo "<table class='table-auto w-full text-left border-collapse border border-gray-300'>";
-                    echo "<thead>
-                            <tr class='bg-gray-200'>
-                                <th class='border border-gray-300 p-2'>Brand Name</th>
-                                <th class='border border-gray-300 p-2'>Contact</th>
-                                <th class='border border-gray-300 p-2'>Product Name</th>
-                                <th class='border border-gray-300 p-2'>Price</th>
-                            </tr>
-                        </thead>";
-                    echo "<tbody>";
-
-                    while (list($bname, $contact, $iname, $price) = $display->fetch_row()) {
+            $display = $conn->query("SELECT * FROM details");
+            if ($display && $display->num_rows > 0) {
+                echo "<table class='table-auto w-full text-left border-collapse border border-gray-300'>";
+                echo "<thead>
+                        <tr class='bg-gray-200'>
+                            <th class='border border-gray-300 p-3'>Brand Name</th>
+                            <th class='border border-gray-300 p-3'>Contact</th>
+                            <th class='border border-gray-300 p-3'>Product Name</th>
+                            <th class='border border-gray-300 p-3'>Price</th>
+                        </tr>
+                    </thead>";
+                echo "<tbody>";
+                while (list($bname, $contact, $iname, $price) = $display->fetch_row()) {
+                    if ($price > 5000) {
                         echo "<tr>
-                                <td class='border border-gray-300 p-2'>" . htmlspecialchars($bname) . "</td>
-                                <td class='border border-gray-300 p-2'>" . htmlspecialchars($contact) . "</td>
-                                <td class='border border-gray-300 p-2'>" . htmlspecialchars($iname) . "</td>
-                                <td class='border border-gray-300 p-2'>" . htmlspecialchars($price) . "</td>
-                            </tr>";
+                            <td class='border border-gray-300 p-3'>$bname</td>
+                            <td class='border border-gray-300 p-3'>$contact</td>
+                            <td class='border border-gray-300 p-3'>$iname</td>
+                            <td class='border border-gray-300 p-3'>$price</td>
+                        </tr>";
                     }
-
-                    echo "</tbody></table>";
-                } else {
-                    echo "<p class='text-red-500'>No records found in the Product List.</p>";
                 }
+                echo "</tbody></table>";
+            } else {
+                echo "<p class='text-red-500'>No records found in the Product List.</p>";
+            }
             ?>
         </section>
-    </div>
+    </main>
 </body>
 </html>
+
 
